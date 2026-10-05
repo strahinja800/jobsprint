@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # JobSprint
 
 Small single-user app for tracking job applications: company, position, link, status and next step.
@@ -12,21 +14,24 @@ Weekly learning project focused on forms, filters and client state. Full day-by-
 
 ## Stack
 
-- Next.js (App Router) + TypeScript (`strict`)
-- Tailwind CSS + shadcn/ui
-- React Hook Form + Zod (`@hookform/resolvers`)
-- Vitest + Testing Library (unit/component), Playwright (E2E)
-- Package manager: npm
+- Next.js 16 (App Router) + TypeScript (`strict`)
+- Tailwind CSS 4 + shadcn/ui (`base-nova` style, Base UI primitives, `cn` package)
+- React Hook Form + Zod 4 (`@hookform/resolvers`)
+- Playwright for ALL tests (no Vitest/Jest):
+  - `unit` project: pure logic (`src/**/*.test.ts`), no browser, no `page` fixture
+  - `desktop` and `mobile` projects: E2E specs in `e2e/`
+- Package manager: npm, Node 22 (`.nvmrc`)
 
 ## Commands
 
 ```bash
-npm run dev          # dev server
-npm run build        # production build
-npm run lint         # ESLint
-npm run typecheck    # tsc --noEmit
-npm run test         # Vitest
-npm run test:e2e     # Playwright
+npm run dev                          # dev server
+npm run build                        # production build
+npm run lint                         # ESLint
+npm run typecheck                    # tsc --noEmit
+npm run test                         # all Playwright projects (starts dev server)
+npm run test -- --project=unit       # only pure logic tests
+npm run test:ui                      # Playwright UI mode
 ```
 
 Run `npm run typecheck` and `npm run test` before every commit.
@@ -50,8 +55,10 @@ src/
     import-export/              # JSON export, validated import with preview
     prep-panel/                 # mock questions + panel UI
   lib/                          # small generic helpers
-e2e/                            # Playwright specs
+e2e/                            # Playwright E2E specs (*.spec.ts)
 ```
+
+Unit tests live next to the code they test (`schema.test.ts` beside `schema.ts`) and import `test`/`expect` from `@playwright/test`.
 
 ## Rules
 

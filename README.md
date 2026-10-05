@@ -20,7 +20,7 @@ A small app for tracking job applications: company, position, posting link, stat
 
 ## Tech stack
 
-Next.js · TypeScript · Tailwind CSS · shadcn/ui · React Hook Form · Zod · Vitest · Playwright
+Next.js · TypeScript · Tailwind CSS · shadcn/ui · React Hook Form · Zod · Playwright
 
 ## Getting started
 
