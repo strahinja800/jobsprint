@@ -7,6 +7,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-status-saved: var(--status-saved);
+  --color-status-applied: var(--status-applied);
+  --color-status-interview: var(--status-interview);
+  --color-status-offer: var(--status-offer);
+  --color-status-rejected: var(--status-rejected);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -55,7 +61,13 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --canvas: oklch(0.967 0.002 106);
+  --status-saved: oklch(0.55 0.005 260);
+  --status-applied: oklch(0.45 0.11 255);
+  --status-interview: oklch(0.55 0.12 75);
+  --status-offer: oklch(0.48 0.12 150);
+  --status-rejected: oklch(0.52 0.17 27);
+  --primary: oklch(0.42 0.05 160);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -90,8 +102,14 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --canvas: oklch(0.18 0 0);
+  --status-saved: oklch(0.72 0.005 260);
+  --status-applied: oklch(0.72 0.11 255);
+  --status-interview: oklch(0.8 0.12 75);
+  --status-offer: oklch(0.75 0.13 150);
+  --status-rejected: oklch(0.72 0.15 27);
+  --primary: oklch(0.72 0.08 160);
+  --primary-foreground: oklch(0.18 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
