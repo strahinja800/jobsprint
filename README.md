@@ -2,8 +2,6 @@
 
 A small app for tracking job applications: company, position, posting link, status and next step.
 
-> **Status:** in progress. This README is completed on Day 7 (screenshots, demo link, test notes).
-
 ## Important
 
 - **Your data stays in your browser.** Everything is saved in `localStorage`. There is no account, no server and no sync between devices. Clearing browser data deletes your applications, so use JSON export for backups.
