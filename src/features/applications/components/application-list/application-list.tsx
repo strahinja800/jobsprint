@@ -1,7 +1,8 @@
-import { ApplicationListItem, type ApplicationListItemData } from "./application-list-item";
+import type { JobApplication } from "@/features/applications/schema";
+import { ApplicationListItem } from "./application-list-item";
 
 type ApplicationListProps = {
-  applications: ApplicationListItemData[];
+  applications: JobApplication[];
 };
 
 export function ApplicationList({ applications }: ApplicationListProps) {
