@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ApplicationsView } from "@/features/applications/components/applications-view/applications-view";
 import { DesignPreviewBar, type PreviewState } from "./design-preview-bar";
-import { SAMPLE_APPLICATIONS } from "./sample-applications";
+import { SEED_APPLICATIONS } from "@/features/applications/seed-applications";
 
 export function DesignPreview() {
   const [state, setState] = useState<PreviewState>("data");
@@ -13,7 +13,7 @@ export function DesignPreview() {
     <>
       <ApplicationsView
         key={state}
-        applications={hasNoApplications ? [] : SAMPLE_APPLICATIONS}
+        applications={hasNoApplications ? [] : SEED_APPLICATIONS}
         isFiltered={state === "no-results"}
         hasSaveError={state === "save-error"}
         defaultQuery={state === "no-results" ? "Acme" : undefined}

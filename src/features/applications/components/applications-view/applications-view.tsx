@@ -1,12 +1,12 @@
 import { ApplicationFilters } from "../application-filters/application-filters";
 import { ApplicationList } from "../application-list/application-list";
 import { ApplicationListEmpty } from "../application-list/application-list-empty";
-import type { ApplicationListItemData } from "../application-list/application-list-item";
+import type { JobApplication } from "@/features/applications/schema";
 import { ApplicationSaveError } from "../application-save-error/application-save-error";
 import { ApplicationsHeader } from "../applications-header/applications-header";
 
 type ApplicationsViewProps = {
-  applications: ApplicationListItemData[];
+  applications: JobApplication[];
   isFiltered: boolean;
   hasSaveError: boolean;
   defaultQuery?: string;
