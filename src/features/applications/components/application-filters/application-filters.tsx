@@ -4,12 +4,26 @@ import {
   APPLICATION_STATUSES,
   STATUS_LABELS,
 } from '@/features/applications/statuses'
+import { ApplicationFilterValues, statusFilterSchema } from '../../filters'
+import { ChangeEvent } from 'react'
 
 type ApplicationFiltersProps = {
-  defaultQuery?: string
+  value: ApplicationFilterValues
+  onChange: (value: ApplicationFilterValues) => void
 }
 
-export function ApplicationFilters({ defaultQuery }: ApplicationFiltersProps) {
+export function ApplicationFilters({
+  onChange,
+  value,
+}: ApplicationFiltersProps) {
+  function handleStatusChange(event: ChangeEvent<HTMLSelectElement>) {
+    const result = statusFilterSchema.safeParse(event.target.value)
+
+    if (result.success) {
+      onChange({ ...value, status: result.data })
+    }
+  }
+
   return (
     <div
       role='search'
@@ -30,8 +44,9 @@ export function ApplicationFilters({ defaultQuery }: ApplicationFiltersProps) {
           id='application-search'
           type='search'
           placeholder='Search company or position'
-          defaultValue={defaultQuery}
           className='h-10 bg-background pl-9'
+          value={value.query}
+          onChange={event => onChange({ ...value, query: event.target.value })}
         />
       </div>
 
@@ -43,8 +58,9 @@ export function ApplicationFilters({ defaultQuery }: ApplicationFiltersProps) {
       </label>
       <select
         id='application-status-filter'
-        defaultValue='all'
         className='h-10 rounded-lg border border-input bg-background px-3 text-base outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-40 md:text-sm'
+        value={value.status}
+        onChange={handleStatusChange}
       >
         <option value='all'>All statuses</option>
         {APPLICATION_STATUSES.map(status => (

@@ -1,24 +1,16 @@
 'use client'
 
 import { ApplicationFilters } from '../application-filters/application-filters'
-import { ApplicationList } from '../application-list/application-list'
-import { ApplicationListEmpty } from '../application-list/application-list-empty'
 import { ApplicationSaveError } from '../application-save-error/application-save-error'
 import { ApplicationsHeader } from '../applications-header/applications-header'
 import { useApplications } from '../../use-applications'
 import { useState } from 'react'
 import { ApplicationFormDialog } from '../application-form/application-form-dialog'
 import { JobApplication } from '../../schema'
+import { DEFAULT_FILTERS, filterApplications } from '../../filters'
+import { ApplicationsViewContent } from './applications-view-content'
 
-type ApplicationsViewProps = {
-  isFiltered: boolean
-  defaultQuery?: string
-}
-
-export function ApplicationsView({
-  isFiltered,
-  defaultQuery,
-}: ApplicationsViewProps) {
+export function ApplicationsView() {
   const {
     applications,
     isLoading,
@@ -28,6 +20,8 @@ export function ApplicationsView({
   } = useApplications()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingApplication, setEditingApplication] = useState<JobApplication>()
+  const [filters, setFilters] = useState(DEFAULT_FILTERS)
+  const visibleApplications = filterApplications(applications, filters)
 
   function openAddForm() {
     setEditingApplication(undefined)
@@ -43,19 +37,19 @@ export function ApplicationsView({
     <>
       <ApplicationsHeader onAdd={openAddForm} />
       <main className='mx-auto flex w-full max-w-240 flex-1 flex-col gap-4 px-4 py-6 sm:px-6'>
-        <ApplicationFilters defaultQuery={defaultQuery} />
+        <ApplicationFilters
+          value={filters}
+          onChange={setFilters}
+        />
         {hasSaveError && <ApplicationSaveError />}
-        {applications.length > 0 ? (
-          <ApplicationList
-            applications={applications}
-            onEdit={openEditForm}
-          />
-        ) : (
-          <ApplicationListEmpty
-            variant={isFiltered ? 'no-results' : 'empty'}
-            onAdd={openAddForm}
-          />
-        )}
+        <ApplicationsViewContent
+          isLoading={isLoading}
+          applications={applications}
+          visibleApplications={visibleApplications}
+          onAdd={openAddForm}
+          onEdit={openEditForm}
+          onResetFilters={() => setFilters(DEFAULT_FILTERS)}
+        />
       </main>
       <ApplicationFormDialog
         application={editingApplication}
