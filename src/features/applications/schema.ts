@@ -37,4 +37,4 @@ export const jobApplicationFormSchema = jobApplicationSchema.omit({
 
 export type JobApplicationFormValues = z.infer<typeof jobApplicationFormSchema>
 
-export const jobApplicationArraySchema = z.array(jobApplicationFormSchema)
+export const jobApplicationArraySchema = z.array(jobApplicationSchema)
