@@ -1,24 +1,23 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { ApplicationsView } from "@/features/applications/components/applications-view/applications-view";
-import { DesignPreviewBar, type PreviewState } from "./design-preview-bar";
-import { SEED_APPLICATIONS } from "@/features/applications/seed-applications";
+import { useState } from 'react'
+import { ApplicationsView } from '@/features/applications/components/applications-view/applications-view'
+import { DesignPreviewBar, type PreviewState } from './design-preview-bar'
 
 export function DesignPreview() {
-  const [state, setState] = useState<PreviewState>("data");
-  const hasNoApplications = state === "empty" || state === "no-results";
+  const [state, setState] = useState<PreviewState>('data')
 
   return (
     <>
       <ApplicationsView
         key={state}
-        applications={hasNoApplications ? [] : SEED_APPLICATIONS}
-        isFiltered={state === "no-results"}
-        hasSaveError={state === "save-error"}
-        defaultQuery={state === "no-results" ? "Acme" : undefined}
+        isFiltered={state === 'no-results'}
+        defaultQuery={state === 'no-results' ? 'Acme' : undefined}
       />
-      <DesignPreviewBar value={state} onChange={setState} />
+      <DesignPreviewBar
+        value={state}
+        onChange={setState}
+      />
     </>
-  );
+  )
 }

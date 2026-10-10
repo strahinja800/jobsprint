@@ -1,43 +1,58 @@
-import { BriefcaseBusiness, Plus, SearchX } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BriefcaseBusiness, Plus, SearchX } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const EMPTY_CONTENT = {
   empty: {
     Icon: BriefcaseBusiness,
-    title: "No applications yet",
-    description: "Add your first application to start tracking where it stands.",
+    title: 'No applications yet',
+    description:
+      'Add your first application to start tracking where it stands.',
   },
-  "no-results": {
+  'no-results': {
     Icon: SearchX,
-    title: "No applications match your filters",
-    description: "Try a different search term or status.",
+    title: 'No applications match your filters',
+    description: 'Try a different search term or status.',
   },
-} as const;
+} as const
 
-type ApplicationListEmptyProps = {
-  variant: keyof typeof EMPTY_CONTENT;
-};
+type Props = {
+  variant: keyof typeof EMPTY_CONTENT
+  onAdd: () => void
+}
 
-export function ApplicationListEmpty({ variant }: ApplicationListEmptyProps) {
-  const { Icon, title, description } = EMPTY_CONTENT[variant];
+export function ApplicationListEmpty({ variant, onAdd }: Props) {
+  const { Icon, title, description } = EMPTY_CONTENT[variant]
 
   return (
-    <section className="flex flex-col items-center rounded-xl border bg-card px-6 py-14 text-center shadow-xs">
-      <span className="flex size-11 items-center justify-center rounded-full bg-muted text-muted-foreground">
-        <Icon aria-hidden className="size-5" />
+    <section className='flex flex-col items-center rounded-xl border bg-card px-6 py-14 text-center shadow-xs'>
+      <span className='flex size-11 items-center justify-center rounded-full bg-muted text-muted-foreground'>
+        <Icon
+          aria-hidden
+          className='size-5'
+        />
       </span>
-      <h2 className="mt-4 font-semibold">{title}</h2>
-      <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
-      {variant === "empty" ? (
-        <Button size="lg" className="mt-5 px-4 font-semibold">
+      <h2 className='mt-4 font-semibold'>{title}</h2>
+      <p className='mt-1 max-w-sm text-sm text-muted-foreground'>
+        {description}
+      </p>
+      {variant === 'empty' ? (
+        <Button
+          onClick={onAdd}
+          size='lg'
+          className='mt-5 px-4 font-semibold'
+        >
           <Plus aria-hidden />
           Add application
         </Button>
       ) : (
-        <Button variant="outline" size="lg" className="mt-5 px-4 font-semibold">
+        <Button
+          variant='outline'
+          size='lg'
+          className='mt-5 px-4 font-semibold'
+        >
           Reset filters
         </Button>
       )}
     </section>
-  );
+  )
 }
