@@ -17,10 +17,10 @@ const EMPTY_CONTENT = {
 
 type Props = {
   variant: keyof typeof EMPTY_CONTENT
-  onAdd: () => void
+  onAction: () => void
 }
 
-export function ApplicationListEmpty({ variant, onAdd }: Props) {
+export function ApplicationListEmpty({ variant, onAction }: Props) {
   const { Icon, title, description } = EMPTY_CONTENT[variant]
 
   return (
@@ -37,7 +37,7 @@ export function ApplicationListEmpty({ variant, onAdd }: Props) {
       </p>
       {variant === 'empty' ? (
         <Button
-          onClick={onAdd}
+          onClick={onAction}
           size='lg'
           className='mt-5 px-4 font-semibold'
         >
@@ -46,6 +46,7 @@ export function ApplicationListEmpty({ variant, onAdd }: Props) {
         </Button>
       ) : (
         <Button
+          onClick={onAction}
           variant='outline'
           size='lg'
           className='mt-5 px-4 font-semibold'

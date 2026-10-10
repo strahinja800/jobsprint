@@ -1,5 +1,5 @@
-import { DesignPreview } from "@/features/design-preview/design-preview";
+import { ApplicationsView } from "@/features/applications/components/applications-view/applications-view";
 
 export default function Home() {
-  return <DesignPreview />;
+  return <ApplicationsView />;
 }
